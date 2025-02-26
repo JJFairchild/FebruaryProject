@@ -2,10 +2,8 @@
 
 from leaderboard import leaderboard #Defining some variables and functions that are crucial to this program's functioning
 import random
-users = [{"name": "Jonas", "scores": []}] 
-user_info = users[0]
 
-def play_game(): #Master function for the game part of the program.
+def play_game(users, user_info): #Master function for the game part of the program.
 	num = random.randint(1, 100)
 	score = 10
 	while score != 0: #If the user hasn't lost yet
@@ -34,7 +32,7 @@ def play_game(): #Master function for the game part of the program.
 	else:
 		print("You're not logged in, so your score won't be saved.")	
 	
-	leaderboard()
+	leaderboard(users)
 	return user_info
 
 #---------- END OF JONAS' CODE (Number guessing game) ----------
