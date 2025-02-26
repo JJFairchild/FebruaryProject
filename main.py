@@ -5,9 +5,11 @@
 import random
 import csv
 import os
+
 from game import play_game
-from leaderboard import leaderboard
+from leaderboard import *
 from users import *
+
 users = []
 
 with open("users.csv", "r") as file: #Read the file and make each line part of the dictionary
@@ -20,21 +22,20 @@ with open("users.csv", "r") as file: #Read the file and make each line part of t
                 user["scores"].append(int(value))
         users.append(user)
 
-
-print(users)
-
 def main():
+    user_info = users[0]
     while True:
         #os.system('cls')
         match input("What do you want to do?\n1. Log in\n2. Play game\n3. View Leaderboard\n4. Log out\n5. Exit\n"):
             case "1":
-                log_in()
+                user_info = log_in()
             case "2":
-                play_game()
+                user_info = play_game(users, user_info)
             case "3":
-                leaderboard()
+                leaderboard(users)
             case "4":
-                log_out()
+                user_info = False
+                print("Successfully logged out.")
             case "5":
                 break
             case _:
