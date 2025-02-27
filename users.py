@@ -1,58 +1,28 @@
 #---------- START OF YENESIS' CODE (User profiles) ----------
 
-class UserProfileManager:
-    def __init__(self):
-        self.profiles = {}
-        self.current_user = None
-
-    def create_profile(self):
-        username = input("Enter a username: ")
-        if username in self.profiles:
-            print("Username already exists.")
-        else:
-            self.profiles[username] = {}
-            print(f"Profile created for {username}.")
-
-    def sign_in(self):
-        username = input("Enter your username to sign in: ")
-        if username in self.profiles:
-            self.current_user = username
-            print(f"{username} signed in.")
-        else:
-            print("Profile not found. Please create a profile first.")
-
-    def view_profile(self):
-        username = input("Enter the username to view profile: ")
-        if username in self.profiles:
-            print(f"Profile for {username}: {self.profiles[username]}")
-        else:
-            print("Profile not found.")
-
-# Example interactive usage
-manager = UserProfileManager()
-while True:
-    action = input("Choose an action: create, sign in, sign out, view, or exit: ").strip().lower()
-    if action == "create":
-        manager.create_profile()
-    elif action == "sign in":
-        manager.sign_in()
-    elif action == "view":
-        manager.view_profile()
-    elif action == "exit":
-        break
-    else:
-        print("Invalid action. Please try again.")
-
-
-def login(users):
-    for user in users:
-        print(f"- {user["name"]}")
+def login(users, user_info):
     while True:
-        username = input("Who do you want to log in as?: ")
-        for user in users:
-            if user["name"] == username:
-                print("Successfully logged in.")
-                return users.index(user)
-        print("That's not a user. Try again.")
+        match input("Do you want to log in or create an account?: ").lower():
+            case "log in":
+                for user in users:
+                    print(f"- {user["name"]}")
+                while True:
+                    username = input("Who do you want to log in as?: ")
+                    for user in users:
+                        if user["name"] == username:
+                            print("Successfully logged in.")
+                            user_info = users.index(user)
+                            return users, user_info
+                    print("That's not a user. Try again.")
+            case "create an account":
+                name = input("What do you want to name your account?: ")
+                users.append({"name": name, "scores": []})
+                user_info = users.index({"name": name, "scores": []})
+                print("You are now logged in.")
+                return users, user_info
+            case _:
+                print("That's not a valid input. Options: 'log in', 'create an account'")
+
+print(login([{"name": "EpixGD", "scores": [2, 3, 5]}], False))
 
 #---------- END OF YENESIS' CODE (User profiles) ----------

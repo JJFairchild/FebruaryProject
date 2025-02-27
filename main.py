@@ -8,7 +8,7 @@ import os
 
 from game import play_game
 from leaderboard import *
-from users import *
+from users import login
 
 users = []
 
