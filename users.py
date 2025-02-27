@@ -1,4 +1,5 @@
 #---------- START OF YENESIS' CODE (User profiles) ----------
+
 class UserProfileManager:
     def __init__(self):
         self.profiles = {}
@@ -20,13 +21,6 @@ class UserProfileManager:
         else:
             print("Profile not found. Please create a profile first.")
 
-    def sign_out(self):
-        if self.current_user:
-            print(f"{self.current_user} signed out.")
-            self.current_user = None
-        else:
-            print("No user currently signed in.")
-
     def view_profile(self):
         username = input("Enter the username to view profile: ")
         if username in self.profiles:
@@ -42,12 +36,23 @@ while True:
         manager.create_profile()
     elif action == "sign in":
         manager.sign_in()
-    elif action == "sign out":
-        manager.sign_out()
     elif action == "view":
         manager.view_profile()
     elif action == "exit":
         break
     else:
         print("Invalid action. Please try again.")
+
+
+def login(users):
+    for user in users:
+        print(f"- {user["name"]}")
+    while True:
+        username = input("Who do you want to log in as?: ")
+        for user in users:
+            if user["name"] == username:
+                print("Successfully logged in.")
+                return users.index(user)
+        print("That's not a user. Try again.")
+
 #---------- END OF YENESIS' CODE (User profiles) ----------
