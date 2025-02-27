@@ -20,12 +20,13 @@ with open("users.csv", "r") as file: #Read the file and make each line part of t
                 user = {"name": line[0], "scores": []}
             else:
                 user["scores"].append(int(value))
-        users.append(user)
+        if user != "\n":
+            users.append(user)
 
 def main():
-    user_info = users[0]
+    user_info = False
     while True:
-        #os.system('cls')
+        os.system('cls')
         match input("What do you want to do?\n1. Log in\n2. Play game\n3. View Leaderboard\n4. Log out\n5. Exit\n"):
             case "1":
                 user_info = log_in()
@@ -44,7 +45,13 @@ def main():
 
 main()
 
-with open("users.csv", "w", newline='') as file: #Erase the contents of the file and write users to the file
+with open("users.csv", "w", newline="") as file: #Erase the contents of the file and write users to the file
     file.write("")
+    csv_writer = csv.writer(file)
+    for user in users:
+        row = [user["name"]]
+        for score in user["scores"]:
+            row.append(score)
+        csv_writer.writerow(row)
 
 #---------- END OF AVERY'S CODE (Main function, saving and retrieving scores) ----------
