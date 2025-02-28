@@ -2,7 +2,7 @@
 
 #---------- START OF AVERY'S CODE (Main function, saving and retrieving scores) ----------
 
-import random
+import random #Import the necessary modules and functions, and define the necessary variables.
 import csv
 import os
 
@@ -11,6 +11,7 @@ from leaderboard import *
 from users import login
 
 users = []
+user_info = False
 
 with open("users.csv", "r") as file: #Read the file and make each line part of the dictionary
     csv_reader = csv.reader(file)
@@ -23,13 +24,12 @@ with open("users.csv", "r") as file: #Read the file and make each line part of t
         if user != "\n":
             users.append(user)
 
-def main():
-    user_info = False
+def main(users, user_info): #Main function that branches out to all parts of the program
     while True:
         os.system('cls')
         match input("What do you want to do?\n1. Log in\n2. Play game\n3. View Leaderboard\n4. Log out\n5. Exit\n"):
             case "1":
-                user_info = log_in()
+                users, user_info = login(users, user_info)
             case "2":
                 user_info = play_game(users, user_info)
             case "3":
@@ -42,8 +42,9 @@ def main():
             case _:
                 print("That's not a valid input. Try again.")
         input("Done reading?: ")
+    return users
 
-main()
+users = main(users, user_info) #Call the main function
 
 with open("users.csv", "w", newline="") as file: #Erase the contents of the file and write users to the file
     file.write("")
