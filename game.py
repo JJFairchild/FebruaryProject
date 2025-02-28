@@ -19,7 +19,7 @@ def play_game(users, user_info): #Master function for the game part of the progr
 	while score != 0: #If the user hasn't lost yet
 		while True:
 			try:
-				print(f"You have {score} tries left.")
+				print(f"\nYou have {score} tries left.")
 				guess = int(input("What is your guess?: ")) #Get the user's guess
 				break
 			except:
