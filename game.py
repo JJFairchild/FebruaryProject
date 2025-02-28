@@ -1,4 +1,4 @@
-#---------- START OF JONAS' CODE (Number guessing game) ----------
+#---------- START OF JONAS' CODE (Number guessing game) ---------
 
 from leaderboard import leaderboard #Defining some variables and functions that are crucial to this program's functioning
 import random
