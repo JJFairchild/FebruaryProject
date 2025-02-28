@@ -4,6 +4,16 @@ from leaderboard import leaderboard #Defining some variables and functions that 
 import random
 
 def play_game(users, user_info): #Master function for the game part of the program.
+	if not user_info and not user_info is 0: #Checks if the user is logged in and warns them about score saving.
+		while True:
+			match input("Your score will NOT BE SAVED if you do not log in. Type y to continue anyway. Type n to exit the game.: "):
+				case "y":
+					break
+				case "n":
+					return user_info
+				case _:
+					print("That's not a valid input. Try again.")
+
 	num = random.randint(1, 100)
 	score = 10
 	while score != 0: #If the user hasn't lost yet
@@ -23,12 +33,12 @@ def play_game(users, user_info): #Master function for the game part of the progr
 			print("Your guess was too large.")
 			score -= 1
 	
-	if user_info:
+	if user_info or user_info == 0:
 		if score == 0:
 			print("Looks like you lost. Better luck next time!")
 		else:
 			print(f"Nice job! Your final score was: {score}")
-			user_info["scores"].append(score)
+			users[user_info]["scores"].append(score)
 	else:
 		print("You're not logged in, so your score won't be saved.")	
 	

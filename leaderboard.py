@@ -2,9 +2,6 @@
 
 # Import the high score tracker module
 
-import copy
-
-
 def spec_sort(i):
     return i["score"]
 
@@ -19,6 +16,6 @@ def leaderboard(users):
     print("Leaderboard:") # Display leaderboard
     for i, score in enumerate(scores, start=1):
         if i <= 10:
-            print(f"{i}. {score["name"]}: {score["score"]}")
+            print(f'{i}. {score["name"]}: {score["score"]}')
 
 #---------- END OF AVERY'S CODE (Leaderboard) ----------
