@@ -16,14 +16,19 @@ def play_game(users, user_info): #Master function for the game part of the progr
 
 	num = random.randint(1, 100)
 	score = 10
+	print("Guess a random number between 1 and 100.")
+
 	while score != 0: #If the user hasn't lost yet
 		while True:
 			try:
 				print(f"\nYou have {score} tries left.")
 				guess = int(input("What is your guess?: ")) #Get the user's guess
-				break
+				if guess in range(1, 100):
+					break
+				else:
+					print("That's not in the range. Try again.")
 			except:
-				print("That's not a valid input. Try again.")
+				print("That's not a number. Try again.")
 		if guess == num: #Tell the user if their guess is too small or large.
 			break
 		elif guess < num:
