@@ -2,8 +2,7 @@
 
 #---------- START OF AVERY'S CODE (Main function, saving and retrieving scores) ----------
 
-import random #Import the necessary modules and functions, and define the necessary variables.
-import csv
+import csv #Import the necessary modules and functions, and define the necessary variables.
 import os
 
 from game import play_game
